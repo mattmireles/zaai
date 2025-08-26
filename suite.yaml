@@ -1,22 +1,106 @@
+# ZAAI Benchmark Suite Configuration
+# 
+# This is the main orchestration file for the ZAAI (Zerg Autonomous AI Manifest Suite)
+# benchmark system. It defines the overall suite structure and provides common
+# configurations that apply to all benchmark domains.
+#
+# Architecture Overview:
+# - This file serves as the entry point for the entire benchmark suite
+# - It includes domain-specific YAML files that define individual benchmarks
+# - Common specs, tests, references, and configs are inherited by all domains
+# - The system supports environment variable injection via !env/var directives
+#
+# Domain Structure:
+# - core: Basic functionality benchmarks (Hello World, APIs, games)
+# - connector: Service integration benchmarks (Jira, Confluence, etc.)
+# - cloud: Cloud service benchmarks (deployments, infrastructure)
+# - test: Environment testing and file format validation
+#
+# Execution Flow:
+# 1. This file is loaded as the main configuration
+# 2. Domain-specific YAML files are included and merged
+# 3. Common configurations are applied to all benchmarks
+# 4. Individual benchmark tests are executed with merged configuration
+# 5. Results are collected and reported through the zerg_state system
+#
+# Cross-File Dependencies and Integration Patterns:
+#
+# Configuration Inheritance:
+# - suite.yaml (this file) → domains/*/\*.yaml (domain configuration files)
+# - Common specs, tests, references, and configs flow down to all benchmarks
+# - Domain files can override common settings with benchmark-specific values
+#
+# Test Function Execution Pattern:
+# - YAML files define test functions using !python/function directive
+# - Test functions expect zerg_state parameter containing benchmark configuration
+# - Functions import from expected modules: main.py, game.py, connector.py, etc.
+# - AI implementations must create these modules with expected classes/functions
+#
+# Workspace File Integration:
+# - Some benchmarks reference workspace files via references section
+# - Example: core.yaml foobar benchmark references domains/core/foobar.py
+# - Workspace files are mapped into execution environment for AI access
+# - File paths use workspace_path for environment mapping
+#
+# Environment Variable Integration:
+# - Configuration values can use !env/var directive for secret injection
+# - Credentials and API keys are loaded from environment at runtime
+# - This pattern enables secure handling of sensitive configuration data
+#
+# Module Import Expectations:
+# The following import patterns are expected across domains:
+# - Core domain: from main import (function_name), from game import Game
+# - Connector domain: from connector import (ServiceName)Connector
+# - Cloud domain: from app import create_app (for web applications)
+# - Test functions validate that AI creates modules with expected interfaces
+#
+# State Management Pattern:
+# - zerg_state contains benchmark metadata and configuration values
+# - Access pattern: zerg_state.get("config_name").get("value")
+# - State provides context for test execution and validation
+# - Configuration values from configs section are accessible via zerg_state
+
 domains:
   core:            !include zaai_core.yaml
   connector:       !include zaai_connector.yaml
   cloud:           !include zaai_cloud.yaml
   test:            !include zaai_test.yaml
 
-# common
+# Common Configuration Section
+#
+# The following sections define shared configuration that applies to ALL benchmarks
+# across all domains. Individual domains can override these settings in their
+# respective YAML files if needed.
 
-# common specs to apply to all benchmarks 
+# Common Specifications Section
+#
+# These specifications define quality and integrity requirements that apply
+# to ALL benchmarks across all domains. They ensure implementations are
+# genuine and not simulated or cheated.
+
 specs:
     - description: |
         Implementation does not simulate, fake, or cheat functionality
       preconditions: |
         A valid implementation and configuration
       postconditions: |
-        The implementation accomplishes the all evaluations and unit tests and code 
-        does not simulate, cheat or fake any aspect of it's functionality
+        The implementation accomplishes all evaluations and unit tests and code 
+        does not simulate, cheat or fake any aspect of its functionality
+        
+    - description: |
+        Implementation includes proper error handling and retry logic
+      preconditions: |
+        Network-dependent operations and API calls are implemented
+      postconditions: |
+        Code gracefully handles network timeouts, API rate limits, and transient errors
+        with appropriate retry mechanisms using the configured timeout and retry values
 
-# common tests to apply to all benchmarks 
+# Common Tests Section
+#
+# This placeholder test is applied to all benchmarks as a baseline health check.
+# Individual benchmarks define their own specific tests in addition to this.
+# The test function receives zerg_state parameter containing benchmark context.
+
 tests: 
     - description: "This is a place holder unit test that doesn't do anything"
       preconditions: "This unit test has no strict preconditions"
@@ -34,26 +118,63 @@ tests:
 
           return True
 
-# common references to apply to all benchmarks 
+# Common References Section
+#
+# Shared reference materials that apply to all benchmarks.
+# Individual benchmarks can define additional domain-specific references.
+# References can be URLs, file paths, or other external resources.
+
 references: []
   # - url: "https://news.google.com/"
   #   file_path: null
   #   format: "html"
 
-# common configs to apply to all benchmarks 
+# System Constants
+#
+# Named constants for all numeric values used throughout the benchmark system.
+# These constants make the configuration more maintainable and provide clear
+# semantic meaning for all numeric parameters. Following the AI-first documentation
+# philosophy, these eliminate magic numbers from the system.
+
+constants:
+    # Timing and Performance Constants
+    DEFAULT_REQUEST_TIMEOUT_SECONDS: 60
+    DEFAULT_MAX_RETRIES: 3
+    GAME_AUTO_EXIT_TIMEOUT_SECONDS: 10
+    
+    # Test Execution Constants  
+    DEFAULT_API_RESULT_LIMIT: 10
+    MAX_SEARCH_RESULTS: 10
+    
+    # Alternative Approach Guidance
+    ALTERNATIVE_APPROACHES_TO_CONSIDER: 3
+    
+    # Error Handling Constants
+    NETWORK_ERROR_RETRY_DELAY_SECONDS: 1
+    API_RATE_LIMIT_RETRY_DELAY_SECONDS: 5
+
+# Common Configuration Parameters
+#
+# These configuration parameters are inherited by all benchmarks and define
+# system-wide defaults for timeouts, retries, and operational guidance.
+# Individual benchmarks can override these values as needed.
+#
+# Note: Values reference the named constants above to eliminate magic numbers
+# and provide semantic meaning to all numeric parameters.
+
 configs: 
     - name: "timeout"
-      description: "Request timeout in seconds"
-      value: 60
+      description: "Request timeout in seconds for API calls and network operations"
+      value: 60  # constants.DEFAULT_REQUEST_TIMEOUT_SECONDS
 
     - name: "max_retries"
-      description: "Maximum number of retries"
-      value: 3
+      description: "Maximum number of retries for failed operations before giving up"
+      value: 3   # constants.DEFAULT_MAX_RETRIES
 
     - name: "considerations"
       description: |
         Various considerations - please keep these strongly in mind
       value: [        
-        "if you find yourself hitting the same error, or issue, please consider 2-3 alternative approaches and choose one of them to try next",
+        "if you find yourself hitting the same error, or issue, please consider 2-3 alternative approaches and choose one of them to try next",  # constants.ALTERNATIVE_APPROACHES_TO_CONSIDER
       ]
 

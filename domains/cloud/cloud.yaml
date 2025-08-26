@@ -1,4 +1,41 @@
-# Flask Todo Application
+# ZAAI Cloud Domain Benchmarks
+#
+# This file defines benchmarks for cloud-based application development and deployment,
+# focusing on web applications, cloud services, and distributed system patterns.
+# These benchmarks test the AI's ability to build scalable applications, work with
+# cloud platforms, and implement modern web development practices.
+#
+# Application Categories:
+# - Web Applications: Flask, FastAPI, Django for full-stack development
+# - Cloud Services: AWS, GCP, Azure service integration
+# - Containerization: Docker, Kubernetes deployment patterns  
+# - Databases: SQL and NoSQL database integration
+# - API Development: RESTful and GraphQL API construction
+# - Authentication: OAuth, JWT, and session management
+# - Deployment: CI/CD pipelines and infrastructure as code
+#
+# Cloud Integration Patterns:
+# - Environment-based configuration management
+# - Secrets and credential handling in cloud environments
+# - Auto-scaling and load balancing considerations
+# - Database connection pooling and management
+# - Monitoring and logging integration
+#
+# Cross-file Dependencies:
+# - Inherits common configurations from ../suite.yaml
+# - May reference cloud provider credentials via environment variables
+# - Test functions validate deployed applications and cloud resources
+#
+# Deployment Philosophy:
+# Unlike other domains that focus on local execution, cloud benchmarks
+# may involve actual deployment to cloud platforms and validation of
+# live endpoints and services.
+
+# Flask Todo Web Application Benchmark
+#
+# Tests full-stack web application development using Flask framework.
+# Validates the AI's ability to create complete CRUD applications with
+# proper web architecture, database integration, and user interface design.
 - name: "flask"
   category: "Web Application"
   description: |

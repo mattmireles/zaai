@@ -1,4 +1,47 @@
 // === source_rust.rs ===
+/**
+ * ZAAI Environment Test - Rust Language Source File
+ * 
+ * This Rust source file serves as a comprehensive test artifact for validating
+ * the ZAAI system's ability to process, parse, and understand Rust language
+ * source code. It demonstrates idiomatic Rust programming patterns while
+ * following AI-first documentation principles established in the ZAAI codebase.
+ * 
+ * Architecture Purpose:
+ * This file is referenced by the test domain (domains/test/test.yaml) as
+ * part of the environment validation benchmark. It validates the system's
+ * capability to handle Rust source files with memory safety, ownership
+ * patterns, and modern Rust idioms in the workspace environment.
+ * 
+ * Cross-file Dependencies:
+ * - Referenced by: domains/test/test.yaml (env benchmark)
+ * - Used by: Environment test functions that validate Rust file processing
+ * - Part of: Multi-language source code validation test suite
+ * 
+ * Rust Language Features Demonstrated:
+ * - Ownership and borrowing system with lifetime management
+ * - Pattern matching with match expressions and enums
+ * - Error handling with Result types and custom error definitions
+ * - Trait system for shared behavior and polymorphism
+ * - Memory safety without garbage collection
+ * - Zero-cost abstractions and performance optimizations
+ * - Generic types and associated types
+ * - Struct and impl blocks with method definitions
+ * - Module system and visibility controls
+ * - Standard library collections and iterators
+ * 
+ * AI Comprehension Notes:
+ * This file contains representative Rust code that demonstrates the language's
+ * unique approach to memory safety and systems programming. An AI system
+ * should be able to understand Rust's ownership model, the type system's
+ * role in preventing memory errors, and the language's emphasis on
+ * zero-cost abstractions.
+ * 
+ * Compilation Requirements:
+ * This file is designed as a standalone Rust program that can be compiled
+ * and executed using Cargo or rustc with standard Rust tooling.
+ */
+
 use std::collections::HashMap;
 use std::fmt;
 use std::error::Error;

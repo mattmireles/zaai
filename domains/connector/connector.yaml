@@ -1,4 +1,40 @@
-# Jira Task Management Service
+# ZAAI Connector Domain Benchmarks
+#
+# This file defines benchmarks for enterprise service integration, focusing on
+# popular SaaS platforms and business productivity tools. These benchmarks test
+# the AI's ability to integrate with external services, handle authentication,
+# and perform CRUD operations through REST APIs.
+#
+# Service Categories:
+# - Task Management: Jira, Asana, Trello for project and task tracking
+# - Documentation: Confluence for knowledge management and documentation
+# - Customer Support: Zendesk for ticket and customer interaction management  
+# - Version Control: GitHub for code repository and issue management
+# - CRM: Salesforce for customer relationship and sales management
+# - ITSM: ServiceNow for IT service management and workflow automation
+#
+# Authentication Patterns:
+# Most benchmarks use standard authentication methods:
+# - API tokens and personal access tokens
+# - OAuth2 client credentials (consumer key/secret)
+# - Basic authentication (username/password)
+# - Environment variable injection for secure credential handling
+#
+# Cross-file Dependencies:
+# - Inherits common configurations from ../suite.yaml
+# - Test functions import connector classes from connector.py module
+# - All benchmarks expect zerg_state parameter with authentication credentials
+#
+# Testing Philosophy:
+# Each benchmark tests full CRUD operations (Create, Read, Update, Delete)
+# to validate comprehensive API integration capabilities rather than
+# simple read-only access.
+
+# Jira Task Management Service Integration Benchmark
+#
+# Tests integration with Atlassian Jira for issue tracking and project management.
+# Validates the AI's ability to authenticate with Jira's REST API, manage projects,
+# create and update issues, and handle Jira's specific data structures.
 - name: "jira"
   category: "Task Management Service"
   description: |
@@ -110,7 +146,7 @@
             
             issues = connector.get_issues(
                 project_key=project_key,
-                max_results=10
+                max_results=10  # constants.DEFAULT_API_RESULT_LIMIT from suite.yaml
             )
 
             assert issues and len(issues) > 0, "No issues retrieved from project"
@@ -181,7 +217,11 @@
       value: !env/var
 # !# Jira Task Management Service
 
-# Confluence Documentation Service
+# Confluence Documentation Service Integration Benchmark
+#
+# Tests integration with Atlassian Confluence for knowledge management and
+# collaborative documentation. Validates the AI's ability to create and manage
+# pages, spaces, and attachments through Confluence's REST API.
 - name: "confluence"
   category: "Documentation Service"
   description: |
@@ -428,7 +468,11 @@
       value: !env/var
 # !# Confluence Documentation Service
 
-# Asana Task Management Service
+# Asana Task Management Service Integration Benchmark
+#
+# Tests integration with Asana for project and task management.
+# Validates the AI's ability to work with Asana's workspace-based model,
+# manage projects, tasks, and team collaboration features.
 - name: "asana"
   category: "Task Management Service"
   description: |
@@ -602,7 +646,11 @@
       value: !env/var
 # !# Asana Task Management Service
 
-# Trello Task Management Service
+# Trello Task Management Service Integration Benchmark
+#
+# Tests integration with Trello's card-based project management system.
+# Validates the AI's ability to work with Trello's boards, lists, and cards
+# model, including card operations and board management.
 - name: "trello"
   category: "Task Management Service"
   description: |
@@ -778,7 +826,11 @@
       value: !env/var
 # !# Trello Task Management Service
 
-# Salesforce CRM Service
+# Salesforce CRM Service Integration Benchmark
+#
+# Tests integration with Salesforce for customer relationship management.
+# Validates the AI's ability to work with complex enterprise CRM systems,
+# including SOQL queries, custom objects, and Salesforce's data model.
 - name: "salesforce"
   category: "CRM Service"
   description: |
@@ -985,7 +1037,11 @@
       value: !env/var
 # !# Salesforce CRM Service
 
-# GitHub Version Control Service
+# GitHub Version Control Service Integration Benchmark
+#
+# Tests integration with GitHub for version control and issue management.
+# Validates the AI's ability to manage repositories, issues, pull requests,
+# and collaborate through GitHub's comprehensive REST API.
 - name: "github"
   category: "Version Control Service"
   description: |
@@ -1201,7 +1257,11 @@
       value: !env/var
 # !# GitHub Version Control Service
 
-# Zendesk Customer Support Service
+# Zendesk Customer Support Service Integration Benchmark
+#
+# Tests integration with Zendesk for customer support and ticket management.
+# Validates the AI's ability to manage support tickets, customer interactions,
+# and help desk workflows through Zendesk's API.
 - name: "zendesk"
   category: "Customer Support Service"
   description: |
@@ -1431,7 +1491,11 @@
       value: !env/var
 # !# Zendesk Customer Support Service
 
-# ServiceNow ITSM Service
+# ServiceNow ITSM Service Integration Benchmark
+#
+# Tests integration with ServiceNow for IT Service Management.
+# Validates the AI's ability to manage incidents, problems, change requests,
+# and IT workflow automation in enterprise environments.
 - name: "servicenow"
   category: "ITSM Service"
   description: |

@@ -1,7 +1,46 @@
 // === source_ts.ts ===
 /**
- * TypeScript Test File - Type Safety and Modern Features
- * Demonstrates TypeScript-specific features and type system
+ * ZAAI Environment Test - TypeScript Source File
+ * 
+ * This TypeScript source file serves as a comprehensive test artifact for
+ * validating the ZAAI system's ability to process, parse, and understand
+ * TypeScript source code with advanced type system features. It demonstrates
+ * modern TypeScript development patterns while following AI-first documentation
+ * principles established in the ZAAI codebase.
+ * 
+ * Architecture Purpose:
+ * This file is referenced by the test domain (domains/test/test.yaml) as
+ * part of the environment validation benchmark. It validates the system's
+ * capability to handle TypeScript files with complex type definitions,
+ * generics, and advanced language features in the workspace environment.
+ * 
+ * Cross-file Dependencies:
+ * - Referenced by: domains/test/test.yaml (env benchmark)
+ * - Used by: Environment test functions that validate TypeScript file processing
+ * - Part of: Multi-language source code validation test suite
+ * 
+ * TypeScript Features Demonstrated:
+ * - Interface definitions and type contracts
+ * - Generic types and constraint-based programming
+ * - Union types and literal type definitions
+ * - Optional properties and nullable types
+ * - Enum definitions and string literal unions
+ * - Advanced utility types (Pick, Omit, Partial)
+ * - Type guards and type narrowing
+ * - Namespace organization and module systems
+ * - Dependency injection patterns with typed interfaces
+ * - Comprehensive error handling with typed exceptions
+ * 
+ * AI Comprehension Notes:
+ * This file contains representative TypeScript code that demonstrates
+ * the language's type system capabilities. An AI system should be able
+ * to understand the type relationships, interface contracts, and
+ * compile-time safety guarantees provided by TypeScript's static typing.
+ * 
+ * Compilation Target:
+ * The code is designed to compile to ES2020+ JavaScript with full
+ * type checking enabled, demonstrating production-ready TypeScript
+ * development practices.
  */
 
 // Type definitions

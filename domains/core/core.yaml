@@ -1,4 +1,36 @@
-# Hello World
+# ZAAI Core Domain Benchmarks
+#
+# This file defines the core benchmarks for the ZAAI system, covering fundamental
+# programming tasks, API integrations, and application development scenarios.
+# These benchmarks test basic competencies that form the foundation for more
+# complex domain-specific tasks.
+#
+# Benchmark Categories:
+# - Basic Output: Simple console output tasks (Hello World)
+# - News: News API integration and data retrieval
+# - API Integration: External API consumption (GitHub, OpenWeatherMap)
+# - Game Development: Interactive application development (Pygame, OpenGL)
+# - Email Service: Email sending and automation
+# - Multi-file Projects: Code organization and module management
+# - SMS Service: Text messaging integration
+# - ITSM Service: IT Service Management system integration
+#
+# Cross-file Dependencies:
+# - Inherits common configurations from ../suite.yaml
+# - References workspace files (e.g., foobar.py) for multi-file benchmarks
+# - Test functions import from main.py, game.py, headlines.py, etc.
+#
+# Execution Model:
+# Each benchmark defines specs (requirements), tests (validation functions),
+# references (external resources), and configs (parameters). The zerg_state
+# parameter provides runtime context including configuration values and 
+# benchmark metadata to test functions.
+
+# Hello World Benchmark
+# 
+# The foundational benchmark that tests basic program execution and output.
+# This benchmark validates that the AI can create a working program that
+# produces the expected console output without errors.
 - name: "hello"
   category: "Basic Output"
   description: |
@@ -35,7 +67,11 @@
 # !Hello World
 
 
-# Google Headlines
+# Google Headlines Benchmark
+#
+# Tests API integration capabilities by retrieving news headlines from Google News.
+# This benchmark validates the AI's ability to work with external APIs, handle
+# HTTP requests, parse responses, and implement error handling and retry logic.
 - name: "headlines"
   category: "News"
   description: "Create an API integration to retrieve the top headlines from Google News. The connector should be able to fetch the single top headline and then the top 10 headlines without using an API key."
@@ -124,7 +160,11 @@
 # !Google Headlines
 
 
-# GitHub Top Repositories
+# GitHub Top Repositories Benchmark
+#
+# Tests GitHub API integration and JSON data processing capabilities.
+# Validates the AI's ability to authenticate with APIs, make HTTP requests,
+# handle pagination, and process structured JSON responses.
 - name: "github"
   category: "API Integration"
   description: "Create an API integration that retrieves the top 10 GitHub repositories by star count. The connector should run code that repeatedly fixes issues until it works, then outputs the repositories."
@@ -175,7 +215,11 @@
       value: "https://api.github.com/search/repositories"
 # !GitHub Top Repositories
 
-# OpenWeatherMap Documentation Navigator
+# OpenWeatherMap Documentation Navigator Benchmark
+#
+# Tests web scraping, HTML parsing, and API documentation analysis capabilities.
+# Validates the AI's ability to navigate web content, extract structured information,
+# and answer queries about API requirements.
 - name: "openweathermap"
   category: "API Documentation / Web Scraping"
   description: |
@@ -263,7 +307,11 @@
     
 # !OpenWeatherMap Documentation Navigator
 
-# Pygame Game 2d
+# Pygame 2D Game Development Benchmark
+#
+# Tests game development capabilities including graphics rendering, event handling,
+# game loop implementation, and collision detection. Validates the AI's ability
+# to create interactive applications with real-time user input.
 - name: "pygame"
   category: "Game Development"
   description: |
@@ -330,11 +378,15 @@
         the passage (collides with the wall or obstacle) the game is over, if the bird passes through
         then the player gets a point
     - name: "auto exit time"
-      description: "The amount of time in seconds to run the game before auto exit so tests do not hange"
-      value: 10
+      description: "The amount of time in seconds to run the game before auto exit so tests do not hang"
+      value: 10  # constants.GAME_AUTO_EXIT_TIMEOUT_SECONDS from suite.yaml
 # !Pygame Game 2d
 
-# 3D FPS
+# 3D First Person Shooter Benchmark
+#
+# Advanced game development benchmark testing 3D graphics programming with OpenGL.
+# Validates complex graphics programming, 3D math, physics simulation, and
+# real-time rendering capabilities. Currently marked as non-working.
 # TODO: this is not working
 - name: "3d_fps"
   category: "Game Development"
@@ -408,11 +460,15 @@
         to explore for the game so there are places to hide behind;
         Game uses pygame and pyopengl
     - name: "auto exit time"
-      description: "The amount of time in seconds to run the game before auto exit so tests do not hange"
-      value: 10
+      description: "The amount of time in seconds to run the game before auto exit so tests do not hang"
+      value: 10  # constants.GAME_AUTO_EXIT_TIMEOUT_SECONDS from suite.yaml
 # !3D FPS
 
-# SendGrid Email Service
+# SendGrid Email Service Integration Benchmark
+#
+# Tests email service integration, API authentication, and message composition.
+# Validates the AI's ability to integrate with third-party services, handle
+# API keys securely, and compose structured email content.
 - name: "sendgrid"
   category: "Email Service"
   description: |
@@ -575,7 +631,12 @@
 
 # TODO: React app of some kind once we exceed python only
 
-# Multi-file Python Project: Foobar
+# Multi-file Python Project Benchmark: Foobar
+#
+# Tests code organization, module imports, and cross-file dependencies.
+# This benchmark validates the AI's ability to work with existing workspace
+# files and create proper Python project structure. References foobar.py
+# from the workspace which contains sample classes Foo, Bar, and Baz.
 - name: "foobar"
   category: "Multi-file Python Project"
   description: |
@@ -639,7 +700,7 @@
 
   references: 
     - description: "foobar.py contains the object code as pertinent to this benchmark"
-      file_path: "code/foobar.py"
+      file_path: "domains/core/foobar.py"
       workspace_path: "foobar.py"
       environment_path: "foobar.py"
       format: "python"
@@ -649,7 +710,11 @@
   configs: []
 # !Multi-file Python Project: Foobar
 
-# Twilio SMS Connector
+# Twilio SMS Service Integration Benchmark
+#
+# Tests SMS service integration, authentication, and message composition.
+# Validates the AI's ability to integrate with Twilio's REST API, manage
+# credentials securely, and compose SMS messages with dynamic content.
 - name: "twilio"
   category: "SMS Service"
   description: |
@@ -850,7 +915,11 @@
       value: "San Jose, CA"
 # !Twilio Email Connector
 
-# SysAid ITSM Service
+# SysAid ITSM Service Integration Benchmark
+#
+# Tests IT Service Management system integration including service request
+# creation, ticket management, and asset tracking. Validates the AI's ability
+# to work with enterprise ITSM platforms and handle complex API workflows.
 - name: "sysaid"
   category: "ITSM Service"
   description: |

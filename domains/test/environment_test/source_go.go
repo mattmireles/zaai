@@ -1,4 +1,44 @@
 // === source_go.go ===
+/**
+ * ZAAI Environment Test - Go Language Source File
+ * 
+ * This Go source file serves as a comprehensive test artifact for validating
+ * the ZAAI system's ability to process, parse, and understand Go language
+ * source code. It demonstrates idiomatic Go programming patterns while
+ * following AI-first documentation principles established in the ZAAI codebase.
+ * 
+ * Architecture Purpose:
+ * This file is referenced by the test domain (domains/test/test.yaml) as
+ * part of the environment validation benchmark. It validates the system's
+ * capability to handle Go source files with modern Go idioms and patterns
+ * in the workspace environment.
+ * 
+ * Cross-file Dependencies:
+ * - Referenced by: domains/test/test.yaml (env benchmark)
+ * - Used by: Environment test functions that validate Go file processing
+ * - Part of: Multi-language source code validation test suite
+ * 
+ * Go Language Features Demonstrated:
+ * - Package declaration and import management
+ * - Interface definitions and implementation patterns
+ * - Struct types with JSON tags and methods
+ * - Error handling with explicit error returns
+ * - Goroutines and channel-based concurrency
+ * - Type embedding and composition patterns
+ * - Pointer usage and memory management
+ * - Standard library usage (JSON, time, math)
+ * - Idiomatic Go naming conventions and code organization
+ * 
+ * AI Comprehension Notes:
+ * This file contains representative Go code that demonstrates the language's
+ * emphasis on simplicity, explicit error handling, and concurrent programming.
+ * An AI system should be able to understand Go's type system, interface
+ * satisfaction, and the language's approach to composition over inheritance.
+ * 
+ * Build Requirements:
+ * This file is designed as a standalone Go program that can be compiled
+ * and executed using standard Go tooling (go build, go run).
+ */
 package main
 
 import (
